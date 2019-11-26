@@ -1,15 +1,22 @@
-<?php
-include_once "./inc/datacon.php";
-include_once './inc/header.php';
-if(isset($_SESSION['chamber_name']) && isset($_SESSION['doc_name']) ){
-    
-include_once 'classes/admin_class.php';
-$admin = new admin();
+<?php include_once "./inc/datacon.php";
+include_once "./inc/header.php";
+include_once "classes/admin_class.php";
 ?>
-<div class="container"><!-- Begin container -->
+    
+<body>
+    
+<!--BEGIN wrapper-->
+<?php 
+if(isset($_SESSION['user_type']) &&isset($_SESSION['chamber_name']) && isset($_SESSION['doc_name'])) {
+/*if($_SESSION['user_type'] == 'DOCTOR'){
+    header("location:visit_list.php");
+} else if($_SESSION['user_type'] == 'RECEPTIONIST'){*/
+?>
 
-<div class="row">
-                                            
+	<div class="container">
+    <!--BEGIN header-->
+    <?php include("banner.php"); ?>
+    <!--END of header-->
     <form id="bill_create_form" class="form-horizontal" >
                    <input type="hidden" name="chamber_id" value="<?php echo $_SESSION['chamber_name']; ?>">
 				      <input type="hidden" name="doc_id" value="<?php echo $_SESSION['doc_name']; ?>">
@@ -31,13 +38,13 @@ $admin = new admin();
 					  <div class="form-group">
 					    <label for="patient_name" class="col-sm-2 control-label">Patient Name</label>
 					    <div class="col-sm-6">
-					      Biswarup Ghoshal
+					      <input type="text" class="form-control" id="patient_name" name="patient_name" placeholder="Enter Name">
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="theDate" class="col-sm-2 control-label">Date of Birth</label>
 					    <div class="col-sm-2">
-					      12-12-12
+					      <input type="date" class="form-control" name="theDate" id="theDate" placeholder="DOB">
 					    </div>
 					  </div>
 					  <div class="form-group">
@@ -48,36 +55,21 @@ $admin = new admin();
 					  </div>
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
-					    	<input type="button" id="add_bill" class="btn btn-default"  value="Add Bill" name="AddBill" >
+					    	<input type="button" id="add_bill" class="btn btn-default"  value="Add Bill" name="add_bill" >
 					    </div>
 					  </div>
 					</form>
-</div>
-<?php 
-if(isset($_GET['patient_id'])){
-    $chamber_name = $_SESSION['chamber_name'];
-    $doc_name= $_SESSION['doc_name'];
-    $user_name= $_SESSION['user_name'];
     
-    $_SESSION['page']='processData';
+   <?php include "footer_pg.php"; ?>
     
-    $patient_id = $_GET['patient_id'];
-    $_SESSION['patient_id'] = $patient_id;
-    
-    $result = mysql_query("select * from visit where patient_id = '$patient_id' and doc_id =  '$doc_name' and chamber_id = '$chamber_name' and visited = 'no'");
-    
-    
-   
-   
-    
-    
+	</div><!-- End container-->
+
+<?php } /*}*/ else {
+    /*  header("location:index_login.php"); */
+    echo "<script>location.href='index_login.php'</script>";
 }
+include_once './inc/footer.php';
 ?>
-</div>
-<?php } else {
-    echo "You are not authorize to perform this operation";
-}
-?>
-<?php include_once './inc/footer.php';?>
 </body>
 </html>
+<?php ob_flush() ?>
