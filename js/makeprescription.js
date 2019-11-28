@@ -485,7 +485,7 @@ $(document).ready(function(){
 	  	});
 	  	
 	  	$("#add_bill").click(function(){
-			  
+			  alert("add bill");
 		    var url = "./ajax/add_bill.php"; // the script where you handle the form input.
 		    if(empty($("#fname").val()) || empty($("#lname").val()) || empty($("#gender").val()) || empty($("#theDate").val()) ){
 		    	$("#search_alert_2").html("First Name, Last Name, Sex and DOB is mandatory");

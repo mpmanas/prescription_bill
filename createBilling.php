@@ -21,7 +21,7 @@ if(isset($_SESSION['user_type']) &&isset($_SESSION['chamber_name']) && isset($_S
                    <input type="hidden" name="chamber_id" value="<?php echo $_SESSION['chamber_name']; ?>">
 				      <input type="hidden" name="doc_id" value="<?php echo $_SESSION['doc_name']; ?>">
 				      <input type="hidden" name="loged_in_user_id" value="<?php echo $_SESSION['user_name']; ?>">
-                      <div class="alert alert-danger" role="alert" id="search_alert_1" hidden="true">
+                      <div class="alert alert-danger" role="alert" id="search_alert_2" hidden="true">
 				        
 				      </div>
 					  <div class="form-group">

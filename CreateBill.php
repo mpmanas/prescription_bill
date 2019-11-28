@@ -111,7 +111,7 @@ if(isset($_SESSION['user_type']) &&isset($_SESSION['chamber_name']) && isset($_S
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
 					    	<input type="button" id="searchPatientForBilling" class="btn btn-default"  value="SearchPatient" name="search" >
-					    </div>P
+					    </div>
 					  </div>
 					</form>
                     
