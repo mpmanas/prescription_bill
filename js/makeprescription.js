@@ -484,6 +484,38 @@ $(document).ready(function(){
 		    }
 	  	});
 	  	
+	  	
+	  	$("#rec_pay").click(function(){
+			  alert("Rec Pay");
+		    var url = "./ajax/add_bill.php"; // the script where you handle the form input.
+		    if(empty($("#fname").val()) || empty($("#lname").val()) || empty($("#gender").val()) || empty($("#theDate").val()) ){
+		    	$("#search_alert_2").html("First Name, Last Name, Sex and DOB is mandatory");
+		    	$("#search_alert_2").show();
+		    	$("#create_r_result").hide();
+		    	
+		    } else {
+		    	var url = "./ajax/rec_pay.php"; // the script where you handle the form input.
+
+			    
+		    	//alert("Submitting the form");
+			    $.ajax({
+		           type: "POST",
+		           url: url,
+		           data: $("#bill_create_form").serialize(), // serializes the form's elements.
+		           success: function(data)
+		           {
+		        	   $("#create_r_result").show();
+			    		
+			    		$("#create_r_result").html(data);
+				        $("#search_alert_2").hide();
+				       
+		        	   
+		               
+		           }
+		         });
+		    }
+	  	});
+	  	
 	  	$("#add_bill").click(function(){
 			  alert("add bill");
 		    var url = "./ajax/add_bill.php"; // the script where you handle the form input.
@@ -1232,6 +1264,23 @@ function searchPatient(){
         }});
        /* xmlhttp.open("GET",url,true);
         xmlhttp.send();*/
+    }
+
+}
+
+function search5(){
+    if(document.getElementById("txtCI").value == ""){
+        alert("Please Input Date");
+        return false;
+    } else {
+        var p_cl_imprssn = document.getElementById("txtCI").value;
+        var url = "ajax/searchDayBilling.php?mode=SEARCH_CI&CI="+p_cl_imprssn;   
+        $("#wait").show();
+        
+        $.ajax({url: url, success: function(result){
+        	$("#wait").hide();
+        	$("#searchDiv").html(result);
+        }});
     }
 
 }
