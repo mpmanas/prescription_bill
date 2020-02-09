@@ -7,7 +7,7 @@ include_once "classes/admin_class.php";
     
 <!--BEGIN wrapper-->
 <?php 
-if(isset($_SESSION['user_type']) &&isset($_SESSION['chamber_name']) && isset($_SESSION['doc_name'])) {
+if(isset($_SESSION['user_type']) &&isset($_SESSION['chamber_name']) && isset($_SESSION['doc_name']) && isset($_GET['patient_id'])) {
 /*if($_SESSION['user_type'] == 'DOCTOR'){
     header("location:visit_list.php");
 } else if($_SESSION['user_type'] == 'RECEPTIONIST'){*/
@@ -18,39 +18,41 @@ if(isset($_SESSION['user_type']) &&isset($_SESSION['chamber_name']) && isset($_S
     <?php include("banner.php"); ?>
     <!--END of header-->
     <form id="bill_create_form" class="form-horizontal" >
-                   <input type="hidden" name="chamber_id" value="<?php echo $_SESSION['chamber_name']; ?>">
+                      <input type="hidden" name="chamber_id" value="<?php echo $_SESSION['chamber_name']; ?>">
 				      <input type="hidden" name="doc_id" value="<?php echo $_SESSION['doc_name']; ?>">
 				      <input type="hidden" name="loged_in_user_id" value="<?php echo $_SESSION['user_name']; ?>">
+				      <input type="hidden" name="patient_id" value="<?php echo $_GET['patient_id']; ?>">
                       <div class="alert alert-danger" role="alert" id="search_alert_2" hidden="true">
+                      
 				        
 				      </div>
 					  <div class="form-group">
-					    <label for="inputEmail3" class="col-sm-2 control-label">Gender</label>
+					    <label for="Procedure Name" class="col-sm-2 control-label">Procedure Name:</label>
 					    <div class="col-sm-2">
-					      <select class="form-control" name="sex" id="sex">
+					      <select class="form-control" name="proc_name" id="proc_name">
                             <option value="0">--SELECT--</option>
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                            <option value="Transgender">Transgender</option>
+                            <option value="Consultation">Consultation</option>
+                            <option value="OT-Surgery">OT-Surgery</option>
+                            <option value="Surgery">Surgery</option>
                         </select>
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <label for="patient_name" class="col-sm-2 control-label">Patient Name</label>
+					    <label for="Procedure details" class="col-sm-2 control-label">Procedure Details:</label>
 					    <div class="col-sm-6">
-					      <input type="text" class="form-control" id="patient_name" name="patient_name" placeholder="Enter Name">
+					      <input type="text" class="form-control" name="proc_details" id="proc_details" placeholder="Procedure details">
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <label for="theDate" class="col-sm-2 control-label">Date of Birth</label>
-					    <div class="col-sm-2">
-					      <input type="date" class="form-control" name="theDate" id="theDate" placeholder="DOB">
+					    <label for="Charge" class="col-sm-2 control-label">Procedure Charge:</label>
+					    <div class="col-sm-6">
+					      <input type="number" class="form-control" name="Charge" id="Charge" placeholder="Charge">
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <label for="cell" class="col-sm-2 control-label">Phone number</label>
+					    <label for="Discount" class="col-sm-2 control-label">Discount:</label>
 					    <div class="col-sm-6">
-					      <input type="tel" class="form-control" name="cell" id="cell" placeholder="Mobile number">
+					      <input type="number" class="form-control" name="Discount" id="Discount" placeholder="Discount">
 					    </div>
 					  </div>
 					  <div class="form-group">
@@ -59,6 +61,7 @@ if(isset($_SESSION['user_type']) &&isset($_SESSION['chamber_name']) && isset($_S
 					    </div>
 					  </div>
 					</form>
+					 <div id="create_r_result">
     
    <?php include "footer_pg.php"; ?>
     

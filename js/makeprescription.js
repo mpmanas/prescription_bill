@@ -414,7 +414,7 @@ $(document).ready(function(){
 		});
 	  
 	  $("#searchPatientForBilling").click(function(){   
-		  alert("searchPatientForBilling");
+		 // alert("searchPatientForBilling");
 		  if(!$("#s_p_id").val() && !$("#s_p_name").val() ){
 			  
 			  $("#search_alert").html("Enter either Patient name or Patient ID");
@@ -486,10 +486,10 @@ $(document).ready(function(){
 	  	
 	  	
 	  	$("#rec_pay").click(function(){
-			  alert("Rec Pay");
+			  //alert("Rec Pay");
 		    var url = "./ajax/add_bill.php"; // the script where you handle the form input.
-		    if(empty($("#fname").val()) || empty($("#lname").val()) || empty($("#gender").val()) || empty($("#theDate").val()) ){
-		    	$("#search_alert_2").html("First Name, Last Name, Sex and DOB is mandatory");
+		    if(empty($("#payment_mode").val()) || empty($("#amount").val()) || empty($("#pay_dt").val()) ){
+		    	$("#search_alert_2").html("Payment Mode, Amount and Date is mandatory");
 		    	$("#search_alert_2").show();
 		    	$("#create_r_result").hide();
 		    	
@@ -497,17 +497,18 @@ $(document).ready(function(){
 		    	var url = "./ajax/rec_pay.php"; // the script where you handle the form input.
 
 			    
-		    	//alert("Submitting the form");
+		    	alert("Submitting the form");
 			    $.ajax({
 		           type: "POST",
 		           url: url,
-		           data: $("#bill_create_form").serialize(), // serializes the form's elements.
+		           data: $("#rec_pay_form").serialize(), // serializes the form's elements.
 		           success: function(data)
 		           {
 		        	   $("#create_r_result").show();
 			    		
 			    		$("#create_r_result").html(data);
 				        $("#search_alert_2").hide();
+				        $("#rec_pay_form").hide();
 				       
 		        	   
 		               
@@ -517,17 +518,15 @@ $(document).ready(function(){
 	  	});
 	  	
 	  	$("#add_bill").click(function(){
-			  alert("add bill");
+			//  alert("add bill");
 		    var url = "./ajax/add_bill.php"; // the script where you handle the form input.
-		    if(empty($("#fname").val()) || empty($("#lname").val()) || empty($("#gender").val()) || empty($("#theDate").val()) ){
-		    	$("#search_alert_2").html("First Name, Last Name, Sex and DOB is mandatory");
+		    if(empty($("#proc_name").val()) || empty($("#Charge").val()) ){
+		    	$("#search_alert_2").html("Procedure Name and Charge is mandatory");
 		    	$("#search_alert_2").show();
 		    	$("#create_r_result").hide();
 		    	
 		    } else {
 		    	var url = "./ajax/add_bill.php"; // the script where you handle the form input.
-
-			    
 		    	//alert("Submitting the form");
 			    $.ajax({
 		           type: "POST",
@@ -539,9 +538,7 @@ $(document).ready(function(){
 			    		
 			    		$("#create_r_result").html(data);
 				        $("#search_alert_2").hide();
-				       
-		        	   
-		               
+				        $("#bill_create_form").hide();
 		           }
 		         });
 		    }

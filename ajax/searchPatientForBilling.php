@@ -47,7 +47,7 @@ if(isset($_SESSION['user_type']) &&   isset($_SESSION['chamber_name']) && isset(
         while($d1 = mysql_fetch_array($result1)){
             echo "<tr>
                 <td>".$d1['GENDER']."</td>
-                <td><a href='createBilling.php?patient_id=".$d1['patient_id']."' class='btn btn-warning' role='button'>Create Billing(".$d1['patient_id'].")</a></td>
+                <td><a href='createBilling.php?patient_id=".$d1['patient_id']."' class='btn btn-warning' role='button'>Create Bill(".$d1['patient_id'].")</a></td>
                 <td>".$d1['patient_first_name']."</td>
                 <td>".$d1['patient_last_name']."</td>
                  <td>";
