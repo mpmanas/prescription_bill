@@ -55,7 +55,8 @@ if(isset($_SESSION['user_type']) &&   isset($_SESSION['chamber_name']) && isset(
             echo "</td>
                 <td>".$d1['patient_cell_num']."</td>
                 <td>".$d1['patient_address']."</td>
-<td><a href='receivePayment.php?patient_id=".$d1['patient_id']."' class='btn btn-warning' role='button'>Receive Payment(".$d1['patient_id'].")</a></td>
+<td><a href='receivePayment.php?patient_id=".$d1['patient_id']."' class='btn btn-warning' role='button'>Receive Payment</a></td>
+<td><a href='StmtPrint.php?patient_id=".$d1['patient_id']."' class='btn btn-warning' role='button'>View / Print Statement</a></td>
             </tr>";
             
         }

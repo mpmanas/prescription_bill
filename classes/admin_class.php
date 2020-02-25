@@ -514,15 +514,26 @@ class admin{
     }
     
     function getPatientDetailsFromVisit($visit_id, $chamber_name, $doc_name){
-    	$_QUERY = "select a.patient_id, a.GENDER, a.patient_first_name, a.patient_last_name, a.patient_name, a.patient_address, 
-					a.patient_city, a.patient_dob, a.age, a.patient_cell_num, a.patient_alt_cell_num, a.patient_email, a.data_entry_date, 
-					a.chamber_id, a.created_by_user_id, a.create_date, a.isSync 
-				    from patient a, visit b where a.patient_id = b.PATIENT_ID and b.VISIT_ID = '".$visit_id."' 
+        $_QUERY = "select a.patient_id, a.GENDER, a.patient_first_name, a.patient_last_name, a.patient_name, a.patient_address,
+					a.patient_city, a.patient_dob, a.age, a.patient_cell_num, a.patient_alt_cell_num, a.patient_email, a.data_entry_date,
+					a.chamber_id, a.created_by_user_id, a.create_date, a.isSync
+				    from patient a, visit b where a.patient_id = b.PATIENT_ID and b.VISIT_ID = '".$visit_id."'
 					and a.chamber_id='".$chamber_name."' and a.doc_id='".$doc_name."' and a.chamber_id=b.chamber_id and a.doc_id=b.doc_id";
-    	$result = mysql_query($_QUERY) or die(mysql_error());
-    	$obj = mysql_fetch_object($result);
-    	
-    	return $obj;
+        $result = mysql_query($_QUERY) or die(mysql_error());
+        $obj = mysql_fetch_object($result);
+        
+        return $obj;
+    }
+    function getPatientDetailsFromInvoice($inv_id, $chamber_name, $doc_name){
+        $_QUERY = "select a.patient_id, a.GENDER, a.patient_first_name, a.patient_last_name, a.patient_name, a.patient_address,
+					a.patient_city, a.patient_dob, a.age, a.patient_cell_num, a.patient_alt_cell_num, a.patient_email, a.data_entry_date,
+					a.chamber_id, a.created_by_user_id, a.create_date, a.isSync
+				    from patient a, patient_proc b where a.patient_id = b.PATIENT_ID and b.row_id = '".$inv_id."'";
+					//and a.chamber_id='".$chamber_name."' and a.doc_id='".$doc_name."' and a.chamber_id=b.chamber_id and a.doc_id=b.doc_id";
+        $result = mysql_query($_QUERY) or die(mysql_error());
+        $obj = mysql_fetch_object($result);
+        
+        return $obj;
     }
     
     function getMaxVisitId($chamber_name, $doc_name){
