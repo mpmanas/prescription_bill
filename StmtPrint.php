@@ -82,7 +82,7 @@ if(isset($_GET['patient_id'])){
                             $result = mysql_query($q11) or die(mysql_error()); 
                             $tot=0;
                             $pay=0;
-                            $disc=0;
+                            $disc=0; 
                     ?>
                     
                     
